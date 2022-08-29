@@ -9,14 +9,29 @@ class NoteModel {
 
   getOneNote(note_id, cb) {
     const query = 'select * from notes where note_id = ?'
-    conn.create
+    conn.query(query, note_id, cb)
   }
 
-  deleteOneNote() {}
+  deleteAllNotes(user_id, cb) {
+    const query = 'delete from notes where user = ?'
+    conn.query(query, user_id, cb)
+  }
 
-  deleteAllNotes() {}
+  deleteOneNote(note_id, cb) {
+    const query = 'delete from notes where note_id = ?'
+    conn.query(query, note_id, cb)
+  }
 
-  saveNote() {}
+  createNote(dataNote, cb) {
+    const query = 'insert into notes set ?'
+
+    conn.query(query, dataNote, cb)
+  }
+
+  updateNote(note_id, dataNote, cb) {
+    const query = 'update notes set ? where note_id = ?'
+    conn.query(query, [dataNote, note_id], cb)
+  }
 }
 
 const noteModel = new NoteModel()

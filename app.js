@@ -7,11 +7,16 @@ if (process.env.NODE_ENV != 'production') {
 const express = require('express')
 const app = express()
 
+const morgan = require('morgan')
+const cors = require('cors')
+
 const routes = require('./routes/note-router')
 const port = process.env.PORT || 5050
 
 app
   .set('port', port)
+  .use(morgan('dev'))
+  .use(cors())
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
   .use('/', routes)
