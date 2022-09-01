@@ -3,4 +3,3 @@ node_modules/
 
 # enviroment variables
 .env
-.env.local

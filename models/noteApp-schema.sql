@@ -14,7 +14,7 @@ create table if not exists users(
 
 create table if not exists notes(
   note_id int not null auto_increment,
-  title varchar(50) not null,
+  title varchar(30) not null,
   body varchar(255),
   user int not null,
   primary key(note_id),

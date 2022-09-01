@@ -1,4 +1,5 @@
-if (process.env.NODE_ENV != 'production') {
+const NODE_ENV = require('../env')
+if (NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
@@ -7,7 +8,7 @@ const conf = require('./db.config.json').mysql
 
 let dbOptions = { ...conf }
 
-dbOptions.password = process.env.PASSWORD
+if (process.env.PASSWORD) dbOptions.password = process.env.PASSWORD
 
 let myConn = mysql.createConnection(dbOptions)
 myConn.connect((err) => {
