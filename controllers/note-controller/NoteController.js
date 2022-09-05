@@ -53,6 +53,28 @@ class NoteController {
     })
   }
 
+  getUserNotes(req, res) {
+    let dataUser = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+    }
+
+    noteModel.getUserNotes(dataUser, (err, rows) => {
+      if (err) {
+        console.log({
+          sqlMessage: err.sqlMessage,
+          sql: err.sql,
+          errno: err.errno,
+        })
+
+        return res.status(500).send({ error: 'Internal server error' })
+      }
+
+      return res.json(rows)
+    })
+  }
+
   deleteAllNotes(req, res) {
     let user_id = req.params.user_id
 

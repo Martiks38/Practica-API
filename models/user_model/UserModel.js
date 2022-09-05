@@ -27,11 +27,3 @@ class UserModel {
 const userModel = new UserModel()
 
 module.exports = userModel
-
-/* 
-user_id int not null auto_increment,
-  name varchar(25) not null,
-  email varchar(30) not null,
-  password varchar(30) not null,
-  primary key(user_id)
-   */

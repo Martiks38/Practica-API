@@ -12,6 +12,13 @@ class NoteModel {
     conn.query(query, note_id, cb)
   }
 
+  getUserNotes(dataUser, cb) {
+    const query =
+      'select title, body from notes where user = (select user_id from users where name = ? or email = ? and password = ?);'
+
+    conn.query(query, [dataUser.name, dataUser.email, dataUser.passwod], cb)
+  }
+
   deleteAllNotes(user_id, cb) {
     const query = 'delete from notes where user = ?'
     conn.query(query, user_id, cb)
